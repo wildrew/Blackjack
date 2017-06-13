@@ -70,7 +70,7 @@ namespace Blackjack
                             done = true;
                             handOver = true;
                         }
-                        if (stay && Valuation.Value("Dealer") > 17 && Valuation.Value("Dealer") <= 21 && !handOver)
+                        if (!handOver && stay && Valuation.Value("Dealer") > 17 && Valuation.Value("Dealer") <= 21)
                         {
                             if (Valuation.Value("Dealer") > Valuation.Value("Player"))
                             {
@@ -85,7 +85,7 @@ namespace Blackjack
                             done = true;
                             handOver = true;
                         }
-                        if (Valuation.Value("Dealer") < 18 && !handOver)
+                        if (!handOver && Valuation.Value("Dealer") < 18)
                         {
                             Console.WriteLine("Dealer takes a card");
                             DealACard("Dealer", "up");
@@ -95,7 +95,7 @@ namespace Blackjack
                                 Console.WriteLine(Dealer.DealerFaceUp[index]);
                             }
                         }
-                        if ((Valuation.Value("Dealer") > 21) && !handOver)
+                        if ((!handOver && Valuation.Value("Dealer") > 21))
                         {
                             Console.WriteLine("Dealer busted.  You win.");
                             Console.WriteLine(Dealer.DealerFaceDown);
@@ -106,14 +106,14 @@ namespace Blackjack
                             done = true;
                             handOver = true;
                         }
-                        if ((Valuation.Value("Dealer") == 21) && !handOver)
+                        if ((!handOver && Valuation.Value("Dealer") == 21))
                         {
                             Console.WriteLine("Dealer's face down card is " + Dealer.DealerFaceDown + ".");
                             Console.WriteLine("Dealer wins.");
                             done = true;
                             handOver = true;
                         }
-                        if ((Valuation.Value("Player") == 21) && !handOver)
+                        if ((!handOver && Valuation.Value("Player") == 21))
                         {
                             Console.WriteLine("Dealer's face down card is " + Dealer.DealerFaceDown + ".");
                             Console.WriteLine("Player wins.");
@@ -295,6 +295,9 @@ namespace Blackjack
                 }
                 else
                 {
+                    //Player.PlayerFaceUp[0] = "Hearts_Queen";
+                    //Player.PlayerFaceUp[1] = "Clubs_Queen";
+                    //Player.PlayerFaceUp[2] = "Clubs_7";
                     foreach (var item in Player.PlayerFaceUp)
                     {
                         ValueList.Add(item);
