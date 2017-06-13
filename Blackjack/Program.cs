@@ -85,7 +85,7 @@ namespace Blackjack
                             done = true;
                             handOver = true;
                         }
-                        if (Valuation.Value("Dealer") < 18)
+                        if (Valuation.Value("Dealer") < 18 && !handOver)
                         {
                             Console.WriteLine("Dealer takes a card");
                             DealACard("Dealer", "up");
